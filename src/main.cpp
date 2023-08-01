@@ -1,10 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <main.hpp>
-#include <depend.cpp>
 
+//function which runs the physics simulation
 void simulation() {
-    std::cout << "test";
+    std::cout << "placeholder";
 };
 
 int main()
@@ -60,7 +60,7 @@ int main()
             subMenu = 0;
             break;
 
-        case 2:
+        case 2: //loading memory
             std::cout << "1: Back\n" << "2: Localy\n";
             std::cout << "\n Load from: ";
             std::cin >> subMenu;
@@ -76,7 +76,7 @@ int main()
             }
             break;
 
-        case 3:
+        case 3: //ejecting memory to location
             std::cout << "1: Back\n" << "2: Localy\n";
             std::cout << "\n Store at: ";
             std::cin >> subMenu;
