@@ -27,6 +27,22 @@ class vec2{
 
 };
 
+class rbBall {
+    public:
+        vec2 position;
+        double mass;
+        double radius;
+
+        vec2 velocity;
+        vec2 acceleration;
+        double accelerationConstant;
+
+        double angle;
+        double AVelocity;
+
+        rbBall(vec2 _position, double _radius, double _mass);
+};
+
 vec2 closestPointToLineSegment(vec2 p1, vec2 p2, vec2 q);
 
 void simulation();

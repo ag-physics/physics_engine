@@ -7,11 +7,13 @@ class vec2 {
         double y;
 
         //constructor
+        vec2() : vec2(0, 0){};
         vec2(double tempX, double tempY) {
             x = tempX;
             y = tempY;
         };
 
+        //mathmatical function for vectors
         vec2 add(vec2 v) {
             v.x += x;
             v.y += y;
@@ -73,9 +75,48 @@ class vec2 {
         
 };
 
-class rigidbody {
-    
+class rbBall {
+    public:
+        vec2 position;
+        double radius;
+        double mass;
+        
+        vec2 velocity = vec2(0, 0);
+        vec2 acceleration = vec2(0, 0);
+        double accelerationConstant = 0.1;
+
+        double angle = 0;
+        double AVelocity = 0;
+
+        double inverseMass;
+
+        rbBall(vec2 _position, double _radius, double _mass) {
+            position = _position;
+            radius = _radius;
+            mass = _mass;
+
+            if (mass == 0) {
+                inverseMass = 0;
+            } else {
+                inverseMass = 1/mass;
+            }
+        };
 };
+
+//gets the number of cordinate points two objects have moved into each other between frames
+double getPentrationDepth(rbBall object1, rbBall object2, double distance) {
+    if (distance <= object1.radius + object2.radius) {
+        return object1.radius + object2.radius - distance;
+    } else {return 0;};
+};
+
+//moves the two objects away from each other along the collision normal so they no longer overlap
+void overlapOffset(rbBall object1, rbBall object2) {
+    vec2 distanceVector = object1.position.sub(object2.position);
+    vec2 penetrationRes = distanceVector.norm().mul(getPentrationDepth(object1, object2, distanceVector.mag())/(object1.inverseMass + object2.inverseMass));
+    object1.position = object1.position.add(penetrationRes.mul(object1.inverseMass));
+    object2.position = object2.position.add(penetrationRes.mul(-object2.inverseMass));
+}
 
 //function to get the closest point and the distance to that point from a position to a line segment
 vec2 closestPointToLineSegment(vec2 p1, vec2 p2, vec2 q) {
