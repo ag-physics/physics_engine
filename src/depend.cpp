@@ -58,16 +58,12 @@ class vec2 {
             };
         };
 
-        vec2 dot(vec2 v) {
-            v.x *= x;
-            v.y *= y;
-            return v;
+        double dot(vec2 v) {
+            return (x * v.x + y * v.y);
         };
 
-        vec2 cross(vec2 v) {
-            v.x *= y;
-            v.y *= x;
-            return v;
+        double cross(vec2 v) {
+            return (x * v.y + y * v.x);
         }
 
         vec2 deltaTimeAdd(vec2 v) {
@@ -75,6 +71,28 @@ class vec2 {
             return v;
         };
         
+};
+
+class rigidbody {
+    
+};
+
+//function to get the closest point and the distance to that point from a position to a line segment
+vec2 closestPointToLineSegment(vec2 p1, vec2 p2, vec2 q) {
+    vec2 u = p2.sub(p1);
+    vec2 v = q.sub(p1);
+
+    double dotProduct = u.dot(v);
+	double uLengthSquared = u.dot(u);
+	double t = dotProduct / uLengthSquared;
+
+    if (t < 0) {
+        return p1;
+    } else if (t > 1) {
+        return p2;
+    } else {
+        return p1.add(u.mul(t));
+    }
 };
 
 void pause() {

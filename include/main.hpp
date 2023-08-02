@@ -27,7 +27,7 @@ class vec2{
 
 };
 
-
+vec2 closestPointToLineSegment(vec2 p1, vec2 p2, vec2 q);
 
 void simulation();
 
