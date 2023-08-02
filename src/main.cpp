@@ -57,6 +57,9 @@ int main()
                 simulation();
                 pause();
             }
+            if(subMenu == 3){
+                pause();
+            };
             subMenu = 0;
             break;
 
