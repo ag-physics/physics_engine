@@ -31,7 +31,7 @@
 */
 
 #ifndef GLEW_INCLUDE
-#include <GLEW/glew.h>
+#include "../include/GLEW/glew.h"
 #else
 #include GLEW_INCLUDE
 #endif
@@ -40,7 +40,7 @@
 #define GLAPI extern
 #include <GLEW/osmesa.h>
 #elif defined(GLEW_EGL)
-#include <GLEW/eglew.h>
+#include "../include/GLEW/eglew.h"
 #elif defined(_WIN32)
 /*
  * If NOGDI is defined, wingdi.h won't be included by windows.h, and thus
@@ -50,9 +50,9 @@
 #if defined(NOGDI)
 #undef NOGDI
 #endif
-#include <GLEW/wglew.h>
+#include "../include/GLEW/wglew.h"
 #elif !defined(__ANDROID__) && !defined(__native_client__) && !defined(__HAIKU__) && (!defined(__APPLE__) || defined(GLEW_APPLE_GLX))
-#include <GLEW/glxew.h>
+#include "../include/"
 #endif
 
 #include <stddef.h> /* For size_t */

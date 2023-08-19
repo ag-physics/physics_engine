@@ -1,0 +1,1 @@
+g++ -c src/glew.c -o out/glew.o
